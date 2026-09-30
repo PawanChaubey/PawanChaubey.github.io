@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dr. Pawan Kumar Chaubey — Research Fellow, Earth Observatory of Singapore, NTU. Hydroclimate extremes, compound drought, regional climate modeling.">
+<title>Pawan Kumar Chaubey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS — exact yc-lin.com values ===== */
+:root {
+  --bg:       oklch(0.975 0.004 80);
+  --ink:      oklch(0.13 0.01 275);
+  --ink-dim:  oklch(0.45 0.008 275);
+  --accent:   oklch(0.44 0.13 258);
+  --line:     oklch(0.85 0.005 275);
+  --serif:   "Cormorant SC", Georgia, serif;
+  --display: "Playfair Display", Georgia, serif;
+  --sans:    "Space Grotesk", -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 0.5px; }
+a:hover { opacity: 0.7; }
+p { margin-bottom: 1em; }
+p:last-child { margin-bottom: 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ===== NAV — exact yc-lin.com ===== */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 48px;
+  background: oklch(0.975 0.004 80 / 0.92);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-bottom: 0.5px solid oklch(0.13 0.01 275 / 0.18);
+}
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 20px; font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--ink); cursor: pointer;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 56px; align-items: center; }
+.nav-link {
+  font-family: var(--serif);
+  font-size: 19px; font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0.45;
+  cursor: pointer;
+  border-bottom: 0.5px solid transparent;
+  padding-bottom: 1px;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+  background: none; border-top: none; border-left: none; border-right: none;
+  font-size: 19px;
+}
+.nav-link:hover { opacity: 0.85; }
+.nav-link.active { opacity: 1; border-bottom: 0.5px solid var(--ink); }
+
+/* ===== PAGE WRAPPER ===== */
+.page {
+  min-height: 100vh;
+  padding-top: 96px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.page.visible { opacity: 1; transform: translateY(0); }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+/* ===== PAGE TITLE — large centered Playfair, exact yc-lin.com ===== */
+.page-title {
+  font-family: var(--display);
+  font-size: clamp(42px, 5.5vw, 66px);
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  margin-bottom: 10px;
+}
+.page-subtitle {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 0;
+}
+
+/* Horizontal rule under social icons */
+.rule {
+  width: 100%; height: 0.5px;
+  background: var(--line);
+  margin: 20px 0 32px;
+}
+
+/* ===== SOCIAL ICONS — circular, centered under title ===== */
+.social-row {
+  display: flex; justify-content: center; gap: 18px;
+  margin: 16px 0 0;
+}
+.social-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 54px; height: 54px; border-radius: 50%;
+  border: 1px solid oklch(0.78 0.005 275);
+  background: transparent; color: var(--ink);
+  text-decoration: none; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.social-btn:hover {
+  background: var(--ink); color: var(--bg);
+  border-color: var(--ink); transform: translateY(-2px); opacity: 1;
+}
+.social-btn svg { width: 22px; height: 22px; display: block; }
+
+/* ===== ABOUT PAGE ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-top: 48px;
+}
+.about-photo-col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.about-photo {
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.photo-label {
+  font-family: var(--serif);
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-dim); text-align: center;
+}
+.about-body p { font-size: 17.5px; line-height: 1.72; margin-bottom: 18px; }
+.about-body p:last-child { margin-bottom: 0; }
+.about-divider { height: 0.5px; background: var(--line); margin: 32px 0 28px; }
+.recruit-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 700; text-align: center;
+  color: var(--ink); margin-bottom: 20px;
+}
+.recruit-text {
+  max-width: 640px; margin: 0 auto;
+  text-align: center; font-size: 17px; color: var(--ink);
+}
+
+/* ===== PUBLICATIONS ===== */
+.pub-note {
+  font-size: 14px; color: var(--ink-dim);
+  font-style: italic; margin-bottom: 32px;
+}
+.pub-section-head {
+  font-family: var(--display);
+  font-size: 26px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em;
+  margin: 44px 0 16px;
+}
+.pub-list { display: flex; flex-direction: column; gap: 18px; }
+.pub-entry {
+  font-size: 17px; line-height: 1.76;
+  color: var(--ink); margin: 0;
+}
+.pub-entry a { font-size: 15px; word-break: break-all; }
+
+/* ===== ACHIEVEMENTS ===== */
+.ach-section-head {
+  font-family: var(--display);
+  font-size: 24px; font-weight: 700;
+  color: var(--ink); margin: 40px 0 16px;
+}
+.ach-table { display: flex; flex-direction: column; }
+.ach-row {
+  display: flex; gap: 24px; align-items: baseline;
+  padding: 13px 0; border-bottom: 0.5px solid var(--line);
+  font-size: 16px; line-height: 1.6;
+}
+.ach-row:first-child { border-top: 0.5px solid var(--line); }
+.ach-yr {
+  min-width: 50px; flex-shrink: 0;
+  font-family: var(--serif);
+  font-size: 12.5px; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.badge {
+  display: inline-block;
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  background: var(--ink); color: var(--bg);
+  padding: 2px 10px; border-radius: 20px;
+  vertical-align: middle; margin-left: 10px;
+}
+.reviewer-list {
+  font-size: 15px; color: var(--ink-dim);
+  line-height: 2; margin-top: 8px;
+}
+
+/* ===== GALLERY ===== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-top: 40px;
+}
+.photo-grid img {
+  width: 100%; aspect-ratio: 1/1;
+  object-fit: cover; border-radius: 2px;
+  transition: opacity 0.2s;
+}
+.photo-grid img:hover { opacity: 0.84; }
+
+/* ===== CONTACT ===== */
+.contact-body {
+  max-width: 600px; margin: 40px auto 0;
+  font-size: 17px; color: var(--ink); line-height: 1.75;
+}
+.contact-body p { margin-bottom: 16px; }
+
+/* ===== FOOTER ===== */
+.sitefooter {
+  background: var(--ink);
+  color: oklch(1 0 0 / 0.45);
+  text-align: center;
+  padding: 32px;
+  font-family: var(--serif);
+  font-size: 13px; letter-spacing: 0.1em;
+  margin-top: 80px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .topnav { padding: 16px 20px; }
+  .nav-brand { font-size: 15px; letter-spacing: 0.1em; }
+  .nav-links { gap: 22px; }
+  .nav-link { font-size: 13px; letter-spacing: 0.14em; }
+  .container { padding: 0 20px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo-col { flex-direction: row; gap: 20px; align-items: center; }
+  .about-photo { width: 100px; height: 100px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .nav-brand { display: none; }
+  .nav-links { gap: 14px; }
+  .nav-link { font-size: 11px; letter-spacing: 0.1em; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <span class="nav-brand" onclick="showPage('about')">PAWAN KUMAR CHAUBEY</span>
+  <div class="nav-links">
+    <button class="nav-link active" id="nav-about"        onclick="showPage('about')">ABOUT</button>
+    <button class="nav-link"        id="nav-publications" onclick="showPage('publications')">PUBLICATIONS</button>
+    <button class="nav-link"        id="nav-achievements" onclick="showPage('achievements')">ACHIEVEMENTS</button>
+    <button class="nav-link"        id="nav-gallery"      onclick="showPage('gallery')">GALLERY</button>
+    <button class="nav-link"        id="nav-contact"      onclick="showPage('contact')">CONTACT</button>
+  </div>
+</nav>
+
+<!-- ================================================================ ABOUT -->
+<div id="page-about" class="page visible">
+<div class="container" style="padding-top:40px; padding-bottom:80px;">
+
+  <h1 class="page-title">About</h1>
+
+  <div class="about-grid">
+    <div class="about-photo-col">
+      <img class="about-photo" src="images/profile.jpg" alt="Dr. Pawan Kumar Chaubey">
+      <p class="photo-label">Research Fellow</p>
+    </div>
+    <div class="about-body">
+      <p>
+        Hello! I am a Research Fellow at the Earth Observatory of Singapore (EOS),
+        Nanyang Technological University (NTU), working under the Climate
+        Transformation Programme (CTP). My research focuses on understanding and
+        modelling the physical processes and impacts of climate extremes across
+        Singapore and the equatorial Southeast Asian region.
+      </p>
+      <p>
+        My work spans hydroclimate extremes — drought, flood, and intense rainfall —
+        across the Indo-Gangetic Plains, Hindu Kush Himalaya, and Southeast Asian
+        river basins, using CMIP5/CMIP6 multi-model ensembles and regional climate
+        models (WRF, RegCM4) to translate uncertain projections into actionable
+        evidence for decision-makers.
+      </p>
+      <p>
+        I am a member of the Robust Information Task Team, WCRP RIfS, an Early
+        Career Researcher (ECR) reviewer for IPCC AR7 (WGI), and an active
+        reviewer for GRL, Climate Dynamics, Urban Climate, and Journal of Hydrology.
+      </p>
+      <p>
+        <a href="YOUR_GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener">Google Scholar</a> ·
+        <a href="https://orcid.org/0000-0002-9683-8224" target="_blank" rel="noopener">ORCID</a> ·
+        <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="YOUR_RESEARCHGATE_URL" target="_blank" rel="noopener">ResearchGate</a> ·
+        Email: <a href="mailto:pawan.chaubey@ntu.edu.sg">pawan.chaubey@ntu.edu.sg</a>
+      </p>
+      <p>Earth Observatory of Singapore, Nanyang Technological University, Singapore</p>
+      <p><a href="assets/CV.pdf" target="_blank" style="font-family:var(--serif);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);border-bottom:0.5px solid var(--ink);padding-bottom:2px;text-decoration:none;">Download CV ↓</a></p>
+    </div>
+  </div>
+
+  <div class="about-divider"></div>
+
+  <h2 class="recruit-title">Open to collaboration</h2>
+  <p class="recruit-text">
+    Reach out for collaboration on hydroclimate extremes, CMIP6 projections, compound drought, or regional climate modeling across South and Southeast Asia.
+    <br><br>
+    <a href="mailto:pawan.chaubey@ntu.edu.sg">pawan.chaubey@ntu.edu.sg</a>
+  </p>
+</div>
+<div class="sitefooter">© 2026 Pawan Kumar Chaubey · Earth Observatory of Singapore, NTU</div>
+</div>
+
+<!-- ================================================================ PUBLICATIONS -->
+<div id="page-publications" class="page" style="display:none;">
+<div class="container" style="padding-top:40px; padding-bottom:80px;">
+
+  <h1 class="page-title">Peer-Reviewed Publications</h1>
+
+  <!-- Social icons — exactly as in yc-lin.com Publications page -->
+  <div class="social-row">
+    <a href="YOUR_GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener" title="Google Scholar" class="social-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+    </a>
+    <a href="https://orcid.org/0000-0002-9683-8224" target="_blank" rel="noopener" title="ORCID" class="social-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.756 0 3.919-1.872 3.919-3.722 0-2.016-1.341-3.722-3.919-3.722h-2.297z"/></svg>
+    </a>
+    <a href="YOUR_RESEARCHGATE_URL" target="_blank" rel="noopener" title="ResearchGate" class="social-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.01 12.01 0 0 0-.198 1.809v.013h-4.944v1.58h1.944v6.86h-1.944v1.493h6.234v-1.493H15.45V5.647h.012c.033.61.197 1.153.49 1.625.296.477.71.843 1.232 1.094.527.252 1.13.378 1.8.378.755 0 1.4-.152 1.93-.455.53-.306.934-.747 1.21-1.32.275-.575.414-1.256.414-2.046 0-.748-.153-1.38-.458-1.895-.308-.516-.741-.903-1.303-1.163C20.82.141 20.238 0 19.586 0zm.02 1.497c.477 0 .86.13 1.15.39.29.258.435.63.435 1.112 0 .49-.146.87-.435 1.14-.29.268-.673.402-1.15.402-.488 0-.876-.134-1.163-.402-.286-.27-.43-.65-.43-1.14 0-.482.144-.854.43-1.112.287-.26.675-.39 1.163-.39z"/></svg>
+    </a>
+    <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener" title="LinkedIn" class="social-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.24 2.24 0 1 1 0 4.47A2.24 2.24 0 0 1 4.98 3.5zM3 8.98h3.96V21H3V8.98zm7.18 0h3.8v1.64h.05c.53-1 1.82-2.06 3.74-2.06 4 0 4.73 2.53 4.73 5.82V21h-3.96v-5.71c0-1.36-.02-3.1-1.94-3.1-1.94 0-2.24 1.46-2.24 3v5.81h-3.96V8.98z"/></svg>
+    </a>
+  </div>
+
+  <div class="rule"></div>
+  <p class="pub-note">* first/corresponding author</p>
+
+  <h2 class="pub-section-head">Under Review</h2>
+  <div class="pub-list">
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Mall, R. K., Singh, B. B., Switzer, A. D. (2026). Projected Hydro-Climate Extremes Under 1.5°C and 2°C Warming over Indian River Basins (IRBs). <em>American Meteorological Society (AMS)</em>. (Under Review)</p>
+    <p class="pub-entry">Chaturvedi, A., Mall, R. K., Singh, S., <strong>Chaubey, P. K.</strong>, Abhilash, P. C. Climate Vulnerability Index for Resilient Management Strategies in Drought-prone Bundelkhand region, India. <em>Land Use Policy</em> (Elsevier). (Under Review)</p>
+    <p class="pub-entry">Bhatla, R., Mall, R. K., Verma, S., Pant, M., <strong>Chaubey, P. K.</strong>, Sinha, P., Verma, A., Singh, P. K. Dynamical assessment of simultaneous flood and drought years over India using regional climate model. <em>Climate Dynamics</em> (Springer). (Under Review)</p>
+  </div>
+
+  <h2 class="pub-section-head">Published — First Author</h2>
+  <div class="pub-list">
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Attada, R., Switzer, A. D., Sooraj, K. P., Samanta, D., &amp; Saini, R. (2026). Projected shifts in dry–wet extremes and possible associated drivers over the Hindu Kush Himalaya. <em>Geomatics, Natural Hazards and Risk</em>, 17(1). <a href="https://doi.org/10.1080/19475705.2026.2692760" target="_blank" rel="noopener">https://doi.org/10.1080/19475705.2026.2692760</a></p>
+
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong> &amp; Mall, R. K. (2023). Intensification of extreme rainfall in Indian River Basin: Using Bias Corrected CMIP6 Climate Data. <em>Earth's Future</em>, 11, e2023EF003556. <a href="https://doi.org/10.1029/2023EF003556" target="_blank" rel="noopener">https://doi.org/10.1029/2023EF003556</a></p>
+
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Mall, R. K., Srivastava, P. K. (2023). Changes in Extremes Rainfall Events in Present and Future Climate Scenarios over the Teesta River Basin, India. <em>Sustainability</em>, 15(5), 4668. <a href="https://doi.org/10.3390/su15054668" target="_blank" rel="noopener">https://doi.org/10.3390/su15054668</a></p>
+
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Mall, R. K., Jaiswal, R., &amp; Payra, S. (2022). Spatio-temporal changes in extreme rainfall events over different Indian river basins. <em>Earth and Space Science</em>, AGU, 9, e2021EA001930. <a href="https://doi.org/10.1029/2021EA001930" target="_blank" rel="noopener">https://doi.org/10.1029/2021EA001930</a></p>
+
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Srivastava, P. K., Gupta, A., &amp; Mall, R. K. (2021). Integrated assessment of extreme events and hydrological responses of Indo-Nepal Gandak River Basin. <em>Environment, Development and Sustainability</em>, 23, 8643–8668. <a href="https://doi.org/10.1007/s10668-020-00986-6" target="_blank" rel="noopener">https://doi.org/10.1007/s10668-020-00986-6</a></p>
+
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Kundu, A., &amp; Mall, R. K. (2019). A geo-spatial inter-relationship with drainage morphometry, landscapes and NDVI in the context of climate change: Varuna river basin, India. <em>Spatial Information Research</em>, 27, 627–641. <a href="https://doi.org/10.1007/s41324-019-00264-2" target="_blank" rel="noopener">https://doi.org/10.1007/s41324-019-00264-2</a></p>
+  </div>
+
+  <h2 class="pub-section-head">Published — Co-author</h2>
+  <div class="pub-list">
+    <p class="pub-entry">Chaturvedi, M., Mall, R. K., Singh, S., <strong>Chaubey, P. K.</strong>, Pandey, A. (2024). Downscaling of CMIP6-Global Climate Model and Evaluation of Heat Wave Events using Deep learning methods. <em>International Journal of Climatology</em>, 1–20. <a href="https://doi.org/10.1002/joc.8366" target="_blank" rel="noopener">https://doi.org/10.1002/joc.8366</a></p>
+    <p class="pub-entry">Singh, S., Mall, R. K., Singh, P. K., Bhatla, R., <strong>Chaubey, P. K.</strong> (2024). How virtuous are the bias-corrected CMIP6 models in the simulation of Heatwave over different meteorological subdivisions of India? <em>Urban Climate</em>. <a href="https://doi.org/10.1016/j.uclim.2024.101936" target="_blank" rel="noopener">https://doi.org/10.1016/j.uclim.2024.101936</a></p>
+    <p class="pub-entry">Rai, P. K., <strong>Chaubey, P. K.</strong>, Mohan, K. &amp; Singh, P. (2017). Geoinformatics for assessing the inferences of quantitative drainage morphometry of the Narmada Basin in India. <em>Applied Geomatics</em>, 9, 167–189. <a href="https://doi.org/10.1007/s12518-017-0191-1" target="_blank" rel="noopener">https://doi.org/10.1007/s12518-017-0191-1</a></p>
+  </div>
+
+  <h2 class="pub-section-head">Conference Proceedings</h2>
+  <div class="pub-list">
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong>, Saini, R., &amp; Attada, R. (2024). Projected Changes in Hydroclimate Extremes in Hindu Kush Himalaya: Insights from CMIP6 models. <em>AGU Fall Meeting 2024</em>. <a href="https://ui.adsabs.harvard.edu/abs/2024AGUFM.A07...16C" target="_blank" rel="noopener">Link</a></p>
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong> &amp; Attada, R. (2024). Projected changes in Compound Extremes under low to high emission SSPs Scenarios. <em>EGU General Assembly 2024</em>, Vienna. <a href="https://doi.org/10.5194/egusphere-egu24-14265" target="_blank" rel="noopener">https://doi.org/10.5194/egusphere-egu24-14265</a></p>
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong> &amp; Mall, R. K. (2022). Are Indian River Basins going to be more Flooded in Future Warming Climate? <em>AGU Fall Meeting 2022</em>. <a href="https://ui.adsabs.harvard.edu/abs/2022AGUFM.A35P1680C" target="_blank" rel="noopener">Link</a></p>
+    <p class="pub-entry"><strong>Chaubey, P. K.*</strong> &amp; Mall, R. K. (2022). Western shifting of Extreme Rainfall Events over the different Indian River Basins in the last 119 years. <em>EGU General Assembly 2022</em>, Vienna. <a href="https://doi.org/10.5194/egusphere-egu22-188" target="_blank" rel="noopener">https://doi.org/10.5194/egusphere-egu22-188</a></p>
+  </div>
+</div>
+<div class="sitefooter">© 2026 Pawan Kumar Chaubey · Earth Observatory of Singapore, NTU</div>
+</div>
+
+<!-- ================================================================ ACHIEVEMENTS -->
+<div id="page-achievements" class="page" style="display:none;">
+<div class="container" style="padding-top:40px; padding-bottom:80px;">
+
+  <h1 class="page-title">Achievements &amp; Service</h1>
+  <div class="rule" style="margin-top:24px;"></div>
+
+  <h2 class="ach-section-head">Awards &amp; Honours</h2>
+  <div class="ach-table">
+    <div class="ach-row"><span class="ach-yr">2025</span><span>Early Career Researcher (ECR) Group Reviewer — IPCC Seventh Assessment Report (AR7), Working Group I (WGI)</span></div>
+    <div class="ach-row"><span class="ach-yr">2025</span><span>Invited Speaker / Session Chair — "Extreme Event: Past Present and Future", AOGS 2025</span></div>
+    <div class="ach-row"><span class="ach-yr">2024</span><span>Digital Green Talents Award — German Federal Ministry of Education and Research</span></div>
+    <div class="ach-row"><span class="ach-yr">2024</span><span>Member — Robust Information Task Team, WCRP RIfS</span></div>
+    <div class="ach-row"><span class="ach-yr">2024</span><span>Co-convener — Session "Extreme Events: Observations and Modeling", EGU24 &amp; AGU24</span></div>
+    <div class="ach-row"><span class="ach-yr">2024</span><span>Work honored by Government of India — Ministry of Science &amp; Technology, Press Information Bureau</span></div>
+    <div class="ach-row"><span class="ach-yr">2023</span><span>CSIR International Travel Grant — AOGS 2023, Singapore</span></div>
+    <div class="ach-row"><span class="ach-yr">2022</span><span>DST-SERB International Travel Grant — AGU Fall Meeting 2022</span></div>
+    <div class="ach-row"><span class="ach-yr">2019</span><span>Best Oral Presentation Prize — CCIVA 2019, IIT Kharagpur</span></div>
+  </div>
+
+  <h2 class="ach-section-head">Journal Reviewer <span class="badge">49 reviews</span></h2>
+  <p class="reviewer-list">
+    Geophysical Research Letters · Climate Dynamics · Urban Climate · Atmospheric Research ·
+    Journal of Hydrology · Environment, Development and Sustainability ·
+    Hydrological Sciences Journal · Remote Sensing in Earth Systems Sciences ·
+    Climate Change · Natural Hazard
+  </p>
+
+  <h2 class="ach-section-head">Professional Memberships</h2>
+  <div class="ach-table">
+    <div class="ach-row"><span class="ach-yr">AGU</span><span>American Geophysical Union — Member ID: 1318643</span></div>
+    <div class="ach-row"><span class="ach-yr">EGU</span><span>European Geosciences Union — Member ID: 631860</span></div>
+    <div class="ach-row"><span class="ach-yr">AOGS</span><span>Asia Oceania Geosciences Society — Member ID: 20A963</span></div>
+    <div class="ach-row"><span class="ach-yr">AAM</span><span>Life Member, Association of Agrometeorologists, India — LM1467</span></div>
+  </div>
+
+  <h2 class="ach-section-head">Education</h2>
+  <div class="ach-table">
+    <div class="ach-row"><span class="ach-yr">2019–2023</span><span>PhD in Geophysics (Atmospheric Science) — Banaras Hindu University</span></div>
+    <div class="ach-row"><span class="ach-yr">2015–2016</span><span>Post-Graduate Diploma in Remote Sensing and GIS</span></div>
+    <div class="ach-row"><span class="ach-yr">2011–2014</span><span>M.Sc. (Tech.) in Geophysics</span></div>
+    <div class="ach-row"><span class="ach-yr">2008–2011</span><span>Bachelor of Science in Physics (Honours)</span></div>
+  </div>
+</div>
+<div class="sitefooter">© 2026 Pawan Kumar Chaubey · Earth Observatory of Singapore, NTU</div>
+</div>
+
+<!-- ================================================================ GALLERY -->
+<div id="page-gallery" class="page" style="display:none;">
+<div class="container" style="padding-top:40px; padding-bottom:80px;">
+  <h1 class="page-title">Gallery</h1>
+  <p class="page-subtitle" style="margin-bottom:32px;">Conferences · Fieldwork · Research</p>
+  <div class="rule"></div>
+  <div class="photo-grid">
+    <img src="images/wcrp1.jpeg" alt="WCRP workshop">
+    <img src="images/photo2.jpg" alt="Conference">
+    <img src="images/photo3.jpg" alt="Research">
+    <img src="images/photo4.jpg" alt="Fieldwork">
+    <img src="images/photo5.jpg" alt="Conference">
+    <img src="images/photo6.jpg" alt="Research">
+    <img src="images/photo7.jpg" alt="Fieldwork">
+    <img src="images/photo8.jpg" alt="Conference">
+    <img src="images/photo9.jpg" alt="Research">
+  </div>
+</div>
+<div class="sitefooter">© 2026 Pawan Kumar Chaubey · Earth Observatory of Singapore, NTU</div>
+</div>
+
+<!-- ================================================================ CONTACT -->
+<div id="page-contact" class="page" style="display:none;">
+<div class="container" style="padding-top:40px; padding-bottom:80px;">
+  <h1 class="page-title">Contact</h1>
+  <div class="rule" style="margin-top:24px;"></div>
+
+  <div class="contact-body">
+    <p>Open to collaboration, invited talks, and conversations about hydroclimate extremes and regional climate modeling across South and Southeast Asia.</p>
+    <p>
+      <strong>Email:</strong><br>
+      <a href="mailto:pawan.chaubey@ntu.edu.sg">pawan.chaubey@ntu.edu.sg</a><br>
+      <a href="mailto:acppawan@gmail.com">acppawan@gmail.com</a>
+    </p>
+    <p>
+      <strong>Address:</strong><br>
+      Earth Observatory of Singapore<br>
+      Nanyang Technological University<br>
+      Singapore
+    </p>
+    <p>
+      <a href="YOUR_GOOGLE_SCHOLAR_URL" target="_blank" rel="noopener">Google Scholar</a> ·
+      <a href="https://orcid.org/0000-0002-9683-8224" target="_blank" rel="noopener">ORCID</a> ·
+      <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="YOUR_RESEARCHGATE_URL" target="_blank" rel="noopener">ResearchGate</a>
+    </p>
+  </div>
+</div>
+<div class="sitefooter">© 2026 Pawan Kumar Chaubey · Earth Observatory of Singapore, NTU</div>
+</div>
+
+<script>
+// ── Page switching — each nav click shows a new full page like yc-lin.com ──
+const PAGES = ['about','publications','achievements','gallery','contact'];
+
+function showPage(id) {
+  // Hide all pages
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) { el.style.display = 'none'; el.classList.remove('visible'); }
+    const nav = document.getElementById('nav-' + p);
+    if (nav) nav.classList.remove('active');
+  });
+
+  // Show target page with fade-in
+  const target = document.getElementById('page-' + id);
+  if (!target) return;
+  target.style.display = 'block';
+  // Scroll to top
+  window.scrollTo(0, 0);
+  // Trigger animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { target.classList.add('visible'); });
+  });
+
+  // Update nav
+  const navBtn = document.getElementById('nav-' + id);
+  if (navBtn) navBtn.classList.add('active');
+
+  // Update URL hash
+  history.pushState(null, '', '#' + id);
+}
+
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+  const hash = location.hash.replace('#','') || 'about';
+  if (PAGES.includes(hash)) showPage(hash);
+});
+
+// On load, check hash
+(function() {
+  const hash = location.hash.replace('#','') || 'about';
+  if (PAGES.includes(hash)) {
+    PAGES.forEach(p => {
+      const el = document.getElementById('page-' + p);
+      if (el) { el.style.display = 'none'; el.classList.remove('visible'); }
+    });
+    const target = document.getElementById('page-' + hash);
+    if (target) { target.style.display = 'block'; target.classList.add('visible'); }
+    PAGES.forEach(p => {
+      const nav = document.getElementById('nav-' + p);
+      if (nav) nav.classList.remove('active');
+    });
+    const navBtn = document.getElementById('nav-' + hash);
+    if (navBtn) navBtn.classList.add('active');
+  }
+})();
+</script>
+</body>
+</html>
